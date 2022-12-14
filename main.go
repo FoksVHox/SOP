@@ -189,6 +189,17 @@ func block(dig *digest, p []byte) {
 	dig.h[7] = h7
 }
 
+func goHash(input []byte) string {
+	// use a sha256 hash function
+	hashgo := sha256.New()
+
+	// write input to hash
+	hashgo.Write(input)
+
+	// return hash as string
+	return fmt.Sprintf("%x", hashgo.Sum(nil))
+}
+
 func main() {
 	// print to console
 	println("SOP Hasher")
@@ -215,15 +226,4 @@ func main() {
 
 	// print to console
 	print("Good Hash: " + New(bytes))
-}
-
-func goHash(input []byte) string {
-	// use a sha256 hash function
-	hashgo := sha256.New()
-
-	// write input to hash
-	hashgo.Write(input)
-
-	// return hash as string
-	return fmt.Sprintf("%x", hashgo.Sum(nil))
 }
